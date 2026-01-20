@@ -26,7 +26,7 @@ If you want to run this on your own machine:
 
 2.  **Clone the Repo:**
     ```bash
-    git clone [https://github.com/bandlayash/jpec-team-eval-app.git](https://github.com/bandlayash/jpec-team-eval-app.git)
+    git clone https://github.com/bandlayash/jpec-team-eval-app.git
     ```
 
 3.  **Install Dependencies:**
@@ -59,6 +59,3 @@ If you want to run this on your own machine:
 * **"Bad argument type":** This usually means the Excel header row selection is wrong. Try adjusting the "Header Row" input in the sidebar.
 * **Form Not Filling:** If the target form URL changes, the specific HTML IDs (e.g., `Radio8_1`) might have changed. See the `CONTRIBUTING.md` for how to update selectors.
 
-## 📄 License
-
-[MIT](https://choosealicense.com/licenses/mit/)

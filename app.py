@@ -60,22 +60,16 @@ def get_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
     
-    # 1. CLOUD / LINUX STRATEGY
-    # Streamlit Cloud installs 'chromium-browser' via packages.txt
-    if shutil.which("chromium-browser"):
+    # Locate the browser installed by packages.txt
+    # On Streamlit Cloud, it's usually 'chromium' or 'chromium-browser'
+    if shutil.which("chromium"):
+        chrome_options.binary_location = shutil.which("chromium")
+    elif shutil.which("chromium-browser"):
         chrome_options.binary_location = shutil.which("chromium-browser")
-        service = Service() # Use default service
-        return webdriver.Chrome(service=service, options=chrome_options)
     
-    # 2. LOCAL / WINDOWS / MAC STRATEGY
-    # Use webdriver_manager to automatically download the right driver
-    elif HAS_WEBDRIVER_MANAGER:
-        service = Service(ChromeDriverManager().install())
-        return webdriver.Chrome(service=service, options=chrome_options)
-    
-    # 3. FALLBACK (Hope Selenium Manager works)
-    else:
-        return webdriver.Chrome(options=chrome_options)
+    # Initialize without a 'service' object. 
+    # Selenium will automatically download the matching driver.
+    return webdriver.Chrome(options=chrome_options)
 
 # --- SIDEBAR ---
 st.sidebar.header("Configuration")
